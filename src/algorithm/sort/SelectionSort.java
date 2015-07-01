@@ -12,7 +12,7 @@ public class SelectionSort {
 
     public static void main(String[] args) {
         int[] nums = {4, 3, 2, 6, 1, 5, 9};
-        new SelectionSort().selectionSort_SelectMax(nums);
+        new SelectionSort().selectSort_withDoubleSelection(nums);
         System.out.println(Arrays.toString(nums));
     }
 
@@ -57,6 +57,42 @@ public class SelectionSort {
             int select = nums[max];
             nums[max] = nums[i];
             nums[i] = select;
+        }
+    }
+
+    /**
+     * 双向 选择排序
+     *
+     * @param nums
+     */
+    public void selectSort_withDoubleSelection(int[] nums) {
+        if (nums == null || nums.length < 2) {
+            return;
+        }
+        int low = 0;
+        int high = nums.length - 1;
+
+        while (low < high) {
+            int max = low;
+            for (int i = low + 1; i <= high; ++i) {
+                if (nums[max] < nums[i]) {
+                    max = i;
+                }
+            }
+            int tmp = nums[high];
+            nums[high] = nums[max];
+            nums[max] = tmp;
+            high--;
+
+            int min = high;
+            for (int i = high; i >= low; i--) {
+                if (nums[min] > nums[i]) {
+                    min = i;
+                }
+            }
+            tmp = nums[low];
+            nums[low] = nums[min];
+            nums[min] = tmp;
         }
     }
 }

@@ -14,7 +14,7 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         int[] nums = {4, 3, 2, 6, 1, 5, 9};
-        new BubbleSort().bubbleSort_optimizeWithSwapPos(nums);
+        new BubbleSort().bubbleSort_withDoubleBubble(nums);
         System.out.println(Arrays.toString(nums));
     }
 
@@ -98,6 +98,44 @@ public class BubbleSort {
                 }
             }
             if (lastSwapPos == lastSwapPos_temp) {
+                break;
+            }
+        }
+    }
+
+    /**
+     * 双向冒泡
+     *
+     * @param nums 待排序数组
+     */
+    public void bubbleSort_withDoubleBubble(int[] nums) {
+        if (nums == null || nums.length < 2) {
+            return;
+        }
+        int low = 0;
+        int high = nums.length - 1;
+        boolean swap = false;
+        while (low < high) {
+
+            for (int i = low; i < high; i++) {
+                if (nums[i] > nums[i + 1]) {
+                    int bigBubble = nums[i];
+                    nums[i] = nums[i + 1];
+                    nums[i + 1] = bigBubble;
+                    swap = true;
+                }
+            }
+            high--;
+            for (int i = high; i > low; i--) {
+                if (nums[i - 1] > nums[i]) {
+                    int smallBubble = nums[i];
+                    nums[i] = nums[i - 1];
+                    nums[i - 1] = smallBubble;
+                }
+            }
+            low++;
+
+            if (!swap) {
                 break;
             }
         }
