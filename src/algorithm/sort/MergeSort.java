@@ -64,17 +64,6 @@ public class MergeSort {
         mergeSort(a, 0, 2 * len);
     }
 
-//    public static void mergeSort_diy(int[] nums, int start, int end) {
-//        if (nums == null || nums.length < 2) {
-//            return;
-//        }
-//        if (end - start < 2) return;
-//        int mid = (end + start) / 2;
-//        mergeSort_diy(nums, start, mid);
-//        mergeSort_diy(nums, mid + 1, end);
-//        merge(nums, start, mid + 1, end);
-//    }
-
     public static void main(String[] args) {
         int[] a = new int[]{
                 4, 3, 6, 1, 2, 5
